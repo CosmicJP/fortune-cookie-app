@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+.fortune-cookie {
+    cursor: pointer;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+}
+
+.fortune-cookie:hover {
+    transform: scale(1.05);
+}
+
+.cookie {
+    width: 200px;
+    height: 100px;
+    background: #f4a460;
+    border-radius: 50px;
+    position: relative;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cookie-top, .cookie-bottom {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background: #d2691e;
+    border-radius: 50px;
+}
+
+.cookie-top {
+    top: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+}
+
+.cookie-bottom {
+    bottom: 0;
+    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+}
+
+.fortune-message {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.fortune-message p {
+    font-size: 1.2em;
+    line-height: 1.5;
+}
+
+/* Animation for cookie opening */
+@keyframes openCookie {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.opening {
+    animation: openCookie 0.5s ease;
+} 
