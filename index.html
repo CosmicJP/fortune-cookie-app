@@ -3,21 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Fortune Cookie</title>
+    <title>Fortune Cookie</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="fortune-cookie" id="fortuneCookie">
-            <div class="cookie">
-                <div class="cookie-top"></div>
-                <div class="cookie-bottom"></div>
-            </div>
-        </div>
-        <div class="fortune-message" id="fortuneMessage">
-            <p>Tap the fortune cookie to reveal your daily fortune!</p>
+    <!-- Ad Containers -->
+    <div class="ad-container left">
+        <div class="ad-space">
+            <div class="ad-placeholder">Advertisement</div>
         </div>
     </div>
+    <div class="ad-container right">
+        <div class="ad-space">
+            <div class="ad-placeholder">Advertisement</div>
+        </div>
+    </div>
+
+    <!-- Test Audio -->
+    <audio id="testSound" src="https://assets.mixkit.co/active_storage/sfx/2003/2003-preview.mp3"></audio>
+    
+    <!-- Test Sound Button -->
+    <button id="testSoundButton" class="test-sound-button">
+        <i class="fas fa-play"></i> Test Sound
+    </button>
+    
+    <!-- Main Content Wrapper -->
+    <div class="content-wrapper">
+        <!-- Entry Animation -->
+        <div id="entryAnimation" class="entry-animation">
+            <div class="mountain-scene">
+                <div class="mountain"></div>
+                <div class="castle">
+                    <div class="tower left"></div>
+                    <div class="tower right"></div>
+                    <div class="door"></div>
+                    <div class="interior"></div>
+                    <div class="window left"></div>
+                    <div class="window right"></div>
+                    <div class="steps"></div>
+                    <div class="door-light"></div>
+                </div>
+                <div class="cloud cloud1"></div>
+                <div class="cloud cloud2"></div>
+                <div class="cloud cloud3"></div>
+                <button id="startButton" class="start-button">Begin Your Journey</button>
+            </div>
+        </div>
+
+        <!-- Main App Container -->
+        <div id="mainContainer" class="main-container">
+            <div class="fortune-cookie-container">
+                <div id="fortuneCookieMain" class="fortune-cookie">
+                    <div class="cookie-top"></div>
+                    <div class="cookie-bottom"></div>
+                    <div class="fortune-paper">
+                        <div id="fortuneMessage" class="fortune-message"></div>
+                    </div>
+                </div>
+                <div id="lightEffect" class="light-effect"></div>
+                <div class="click-signal">Press the cookie</div>
+            </div>
+            <button id="muteButton" class="mute-button">
+                <i class="fas fa-volume-up"></i>
+            </button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html> 
