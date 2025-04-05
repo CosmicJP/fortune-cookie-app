@@ -14,6 +14,59 @@ body {
     overflow: hidden;
 }
 
+/* Ad Containers */
+.ad-container {
+    position: fixed;
+    top: 0;
+    width: 300px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    z-index: 2000;
+}
+
+.ad-container.left {
+    left: 0;
+}
+
+.ad-container.right {
+    right: 0;
+}
+
+.ad-space {
+    width: 100%;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.ad-placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.2em;
+    text-align: center;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: calc(100% - 600px);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
 /* Entry Animation */
 .entry-animation {
     position: fixed;
@@ -56,7 +109,7 @@ body {
     border-bottom: 500px solid #4a4a4a;
 }
 
-/* Castle (formerly Temple) */
+/* Castle */
 .castle {
     position: absolute;
     bottom: 380px;
@@ -95,7 +148,38 @@ body {
     box-shadow: 0 -5px 15px rgba(212, 175, 55, 0.3);
 }
 
-/* Add castle details */
+/* Castle Towers */
+.castle .tower {
+    position: absolute;
+    bottom: 0;
+    width: 60px;
+    height: 200px;
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.castle .tower.left {
+    left: -70px;
+}
+
+.castle .tower.right {
+    right: -70px;
+}
+
+.castle .tower:before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(135deg, #D4AF37, #FFD700);
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 -5px 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Castle Door */
 .castle .door {
     position: absolute;
     bottom: 20px;
@@ -114,7 +198,6 @@ body {
     transform: translateX(-50%) rotateY(-90deg);
 }
 
-/* Add a dark interior behind the door */
 .castle .interior {
     position: absolute;
     bottom: 20px;
@@ -132,46 +215,37 @@ body {
     opacity: 1;
 }
 
-.castle .window {
+.castle .door-light {
     position: absolute;
-    top: 40px;
-    width: 40px;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.1);
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
     border-radius: 5px;
-    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 1;
 }
 
-.castle .window.left {
-    left: 30px;
+.castle .door-light.active {
+    opacity: 1;
+    transform: translateX(-50%) scale(2);
 }
 
-.castle .window.right {
-    right: 30px;
+/* Media Queries */
+@media (max-width: 1200px) {
+    .ad-container {
+        display: none;
+    }
+    
+    .content-wrapper {
+        max-width: 100%;
+    }
 }
 
-.castle .steps {
-    position: absolute;
-    bottom: -20px;
-    left: 0;
-    width: 100%;
-    height: 20px;
-    background: linear-gradient(135deg, #8B4513, #A0522D);
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.castle .steps:before {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 10%;
-    width: 80%;
-    height: 10px;
-    background: linear-gradient(135deg, #8B4513, #A0522D);
-    border-radius: 0 0 5px 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
+/* Rest of your existing styles... */
 
 .cloud {
     position: absolute;
@@ -390,26 +464,6 @@ body {
     }
 }
 
-/* Add a light effect for the door opening */
-.castle .door-light {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 80px;
-    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
-    border-radius: 5px;
-    opacity: 0;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    z-index: 1;
-}
-
-.castle .door-light.active {
-    opacity: 1;
-    transform: translateX(-50%) scale(2);
-}
-
 /* Mute Button */
 .mute-button {
     position: fixed;
@@ -485,99 +539,4 @@ body {
     0% { transform: translateX(-50%) scale(1); }
     50% { transform: translateX(-50%) scale(1.05); }
     100% { transform: translateX(-50%) scale(1); }
-}
-
-/* Add towers */
-.castle .tower {
-    position: absolute;
-    bottom: 0;
-    width: 60px;
-    height: 200px;
-    background: linear-gradient(135deg, #8B4513, #A0522D);
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-
-.castle .tower.left {
-    left: -70px;
-}
-
-.castle .tower.right {
-    right: -70px;
-}
-
-.castle .tower:before {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: 0;
-    width: 100%;
-    height: 20px;
-    background: linear-gradient(135deg, #D4AF37, #FFD700);
-    border-radius: 10px 10px 0 0;
-    box-shadow: 0 -5px 15px rgba(212, 175, 55, 0.3);
-}
-
-/* Ad Containers */
-.ad-container {
-    position: fixed;
-    top: 0;
-    width: 300px;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-    z-index: 2000;
-}
-
-.ad-container.left {
-    left: 0;
-}
-
-.ad-container.right {
-    right: 0;
-}
-
-.ad-space {
-    width: 100%;
-    height: 600px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(5px);
-}
-
-.ad-placeholder {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 1.2em;
-    text-align: center;
-}
-
-/* Content Wrapper */
-.content-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: calc(100% - 600px);
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-/* Media query for smaller screens */
-@media (max-width: 1200px) {
-    .ad-container {
-        display: none;
-    }
-    
-    .content-wrapper {
-        max-width: 100%;
-    }
 } 
